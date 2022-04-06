@@ -273,13 +273,6 @@ def Model(features, labels, mode, params):
     decoder_outputs_queue = decoder(decoder_inputs_queue, encoder_outputs_queue, [params['hidden_size'] * 4, params['hidden_size']],
                               DEFINES.heads_size, DEFINES.layers_size)
 
-    # encoder_outputs, encoder_outputs_queue = encoder2(encoder_inputs, encoder_inputs_queue,
-    #                                                   [params['hidden_size'] * 4, params['hidden_size']],
-    #                                                   DEFINES.heads_size, DEFINES.layers_size)
-    # decoder_outputs, decoder_outputs_queue = decoder2(decoder_inputs, decoder_inputs_queue, encoder_outputs,
-    #                                                   encoder_outputs_queue,
-    #                                                   [params['hidden_size'] * 4, params['hidden_size']],
-    #                                                   DEFINES.heads_size, DEFINES.layers_size)
 
     logits = tf.keras.layers.Dense(params['vocabulary_length'])(decoder_outputs + decoder_outputs_queue)
 
@@ -996,7 +989,7 @@ def findPopularityFromData(dataset):
     POPULARITY = to_frequency_table(dfvisits1.poiID)
 
 def  makeDoc2VecData(dataset):
-    descriptoin = pd.read_excel('DataExcelFormatWithPOIDescription/POI-' + dataset + 'withDescription.xlsx')
+    descriptoin = pd.read_excel('POI-' + dataset + 'withDescription.xlsx')
     questionForm = pd.DataFrame(columns=["id","qid1","qid2","question1","question2","is_duplicate"])
     index = 0
     for i in range(len(descriptoin)):
@@ -1029,7 +1022,7 @@ def category_paragraph_sequence(input, C, S, idx2char):
 
 def main(dataset):
 
-    pre_5, pre_10, f1_5, f1_10, recall_5, recall_10, ndcg_5, ndcg_10, pop5, pop10, dis5, dis10, total_rmse = 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+    pre_5, pre_10, f1_5, f1_10, recall_5, recall_10, ndcg_5, ndcg_10, total_rmse = 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
 
     results = pd.DataFrame(columns=['pre_5', 'pre_10', 'f1_5', 'f1_10', 'recall_5', 'recall_10', 'ndcg_5', 'ndcg_10','rmse'])
 
@@ -1217,9 +1210,9 @@ def main(dataset):
     print("total_rmse = ", total_rmse)
 
     if (DEFINES.user_interest == 1):
-        results.to_excel('Results_Final/TLRM-UI_results_POIDes' + dataset+'.xlsx')
+        results.to_excel('TLRM-UI_results_POIDes' + dataset+'.xlsx')
     else:
-        results.to_excel('Results_Final/TLRM-UI_results_Cate' + dataset + '.xlsx')
+        results.to_excel('TLRM-UI_results_Cate' + dataset + '.xlsx')
 
     end_time = timeit.default_timer()
     return end_time-start_time, train_execution_time, test_execution_time
@@ -1238,6 +1231,6 @@ if __name__ == '__main__':
         print("Time Duration = ", ex_time, " seconds", "Training time = ", train_time, " test time = ", test_time)
         executive_time.at[executive_time.shape[0]] = [data,ex_time,train_time, test_time]
     if (DEFINES.user_interest == 1):
-        executive_time.to_excel('Results_Final/TLRM-UI_POIDes_Executive_time.xlsx')
+        executive_time.to_excel('TLRM-UI_POIDes_Executive_time.xlsx')
     else:
-        executive_time.to_excel('Results_Final/TLRM-UI_Cate_Executive_time.xlsx')
+        executive_time.to_excel('TLRM-UI_Cate_Executive_time.xlsx')
