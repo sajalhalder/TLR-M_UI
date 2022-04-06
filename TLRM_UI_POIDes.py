@@ -299,20 +299,7 @@ def Model(features, labels, mode, params):
         }
 
         return tf.estimator.EstimatorSpec(mode, predictions=predictions)
-    #
-    # if PREDICT:
-    #     predictions = {
-    #         'topk': tf.nn.top_k(logits[:, 0:1, :], 10)[1],  # tf.nn.top_k(logits[:,0:1,:],10)[1]
-    #         'indexs': predict,
-    #         'logits': logits,
-    #         'indexs_queue': predict_queue,
-    #         'logits_queue': logits_queue,
-    #         'reward': tf.nn.top_k(logits[:, 0:1, :], 10)[0]
-    #         # 'topk': tf.nn.top_k(logits[:,:,:],1)[0],
-    #         # 'topk2': tf.nn.top_k(logits[:,0:1,:],5)[1] #tf.nn.top_k(tf.nn.top_k(logits,1)[0],tf.shape(tf.nn.top_k(logits,1)[0])[0])[1]
-    #     }
-    #
-    #     return tf.estimator.EstimatorSpec(mode, predictions=predictions)
+   
 
     label1 = labels['target']
     label2 = labels['t_queue']
@@ -1007,60 +994,6 @@ def findPopularityFromData(dataset):
     dfvisits1.drop_duplicates(subset=['nsid', 'poiID', 'seqID'])
 
     POPULARITY = to_frequency_table(dfvisits1.poiID)
-
-
-def evaluation_popularity(value,targets, idx2char, POPULARITY):
-
-
-    index = 0
-    popularity_5 = 0
-    popularity_10 = 0
-    distance_5, distance_10 = 0, 0
-
-    # print("Value = ", value)
-
-    for v in value:
-        pop_5, pop_10 = 0,0
-        index2 = 0
-
-        target_poi = targets[index][0]
-        tarPOP = POPULARITY[idx2char[target_poi]]
-
-        index_topk, score_topk = largest_indices(v['logit'][index2], 10)
-        top_k = np.asarray(index_topk)
-        dis_5, dis_10 = 0.0, 0.0
-        for x in top_k[0:5]:
-            pop_5 += POPULARITY[idx2char[x]]
-            dis_5 += abs(tarPOP-POPULARITY[idx2char[x]])
-
-
-        for x in top_k:
-            pop_10 += POPULARITY[idx2char[x]]
-            dis_10 += abs(tarPOP - POPULARITY[idx2char[x]])
-
-
-        pop_5 = pop_5 / 5
-        pop_10 = pop_10 / 10
-        dis_5 = dis_5 / 5
-        dis_10 = dis_10 / 10
-
-        popularity_5 += pop_5
-        popularity_10 += pop_10
-        distance_5 += dis_5
-        distance_10 += dis_10
-
-        index = index + 1
-
-
-    popularity_5 /= index
-    popularity_10 /= index
-    distance_5 /= index
-    distance_10 /= index
-
-
-    return popularity_5, popularity_10, distance_5, distance_10
-
-
 
 def  makeDoc2VecData(dataset):
     descriptoin = pd.read_excel('DataExcelFormatWithPOIDescription/POI-' + dataset + 'withDescription.xlsx')
