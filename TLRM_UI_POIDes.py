@@ -1,3 +1,10 @@
+"""
+Research Article: POI Recommendation with Queuing Time and User Interest Awareness (In Submission DMKD)
+Authors: Sajal Halder, Jeffrey Chan, Xiuzhen Zhang and Kwan Hui Lim
+Implemented By: Sajal Halder, PhD Candidate, RMIT University, Australia
+Implementation Time: November 2022 - May 2021
+Description: POI description based users interest in top-k POI recommendation and queuing time prediction
+"""
 import tensorflow as tf
 # import tensorflow_ranking as tfr
 from konlpy.tag import Twitter
