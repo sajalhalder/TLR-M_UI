@@ -5,7 +5,7 @@ In this work, we propose a multi-task, multi-head attention transformer model. T
 To use this code in your research work please cite the following paper.  
 
 
-Sajal Halder, Kwan Hui Lim, Jeﬀrey Chan, and Xiuzhen Zhang. POI Recommendation with Queuing Time and User Interest Awarenessn. In Submission, 2022.
+Sajal Halder, Kwan Hui Lim, Jeﬀrey Chan, and Xiuzhen Zhang. POI Recommendation with Queuing Time and User Interest Awareness. In Submission, 2022.
 
 
 # Implemtation Details
