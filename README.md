@@ -5,15 +5,16 @@ In this work, we propose a multi-task, multi-head attention transformer model. T
 To use this code in your research work please cite the following paper.  
 
 
-Sajal Halder, Kwan Hui Lim, Jeﬀrey Chan, and Xiuzhen Zhang. POI Recommendation with Queuing Time and User Interest Awareness. In Submission, 2022.
+Sajal Halder, Kwan Hui Lim, Jeﬀrey Chan, and Xiuzhen Zhang. POI Recommendation with Queuing Time and User Interest Awareness. In Data Mining and Knowledge
+Discovery, pp. 1–31, 2022
 
 In this research work, we aim to answer the following research questions. 
   
-     (i) Are users' interests important for recommending top-k POIs?  
-     
-    (ii) Are users' interests important for recommending top-k POIs and predicting queuing times simultaneously? 
-    
-    (iii) How does POI description based users' interests perform compared to the POI categorical based users' interests? 
+      (i) Are user interests important for recommending top-k POIs?
+
+     (ii) Are user interests important for recommending top-k POIs and predicting queuing times simultaneously?
+
+    (iii) How does POI description based user interests perform compared to the POI category based user interests? 
 
 
 
